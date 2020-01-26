@@ -1,0 +1,5 @@
+1 New Year Promo has a product code, however it has a Catagory 'Any', so I am going to assume it applies to all products.
+2 New Year Promo will override individual promotions during that period for all products.
+3 The Product Id in the request will match the list of product ids in Product Details table (tblProductDetails).
+4 If the total points is a decimal value, it will be rounded to the nearest integer.
+5 Unit price need not be part of the request as it can be retrived from the database, however if unit price is in the request, it will match the unit price from the database.
