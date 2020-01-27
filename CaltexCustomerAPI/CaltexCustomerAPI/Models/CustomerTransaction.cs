@@ -7,7 +7,7 @@ namespace CaltexCustomerAPI.Models
     {
         public CustomerTransaction()
         {
-            TblTotalDetail = new HashSet<TotalDetail>();
+            TotalDetail = new HashSet<TotalDetail>();
         }
 
         public Guid CustomerId { get; set; }
@@ -15,7 +15,7 @@ namespace CaltexCustomerAPI.Models
         public DateTime? DtmTransaction { get; set; }
         public DateTime? DtmInserted { get; set; }
 
-        public virtual Basket TblBasket { get; set; }
-        public virtual ICollection<TotalDetail> TblTotalDetail { get; set; }
+        public virtual ICollection<Basket> Basket { get; set; }
+        public virtual ICollection<TotalDetail> TotalDetail { get; set; }
     }
 }

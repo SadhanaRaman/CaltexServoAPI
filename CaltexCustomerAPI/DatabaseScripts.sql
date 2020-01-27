@@ -147,7 +147,7 @@ CREATE TABLE [dbo].[tblBasket](
 
  CONSTRAINT [PK_tblBasket] PRIMARY KEY CLUSTERED 
 (
-	[CustomerId] ASC
+	[BasketID] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON, FILLFACTOR = 90) ON [PRIMARY]
 ) ON [PRIMARY]	
 
@@ -169,19 +169,19 @@ SET QUOTED_IDENTIFIER ON
 
 SET ANSI_PADDING ON
 
-CREATE TABLE [dbo].[tblTotalDetails](
-
+CREATE TABLE [dbo].[tblTotalDetail](
 	[TotalD] [int] IDENTITY(1,1) NOT NULL,
-	[CustomerId][uniqueidentifier] NOT NULL,
-	[GrandTotal] float NOT NULL,
-	[PointsTotal] int NULL,
-	[dtmInserted] datetime
-
- CONSTRAINT [PK_tblTotalDetails] PRIMARY KEY CLUSTERED 
+	[CustomerId] [uniqueidentifier] NOT NULL,
+	[DiscountApplied] [int] NULL,
+	[GrandTotal] [float] NOT NULL,
+	[TotalAmount] [float] NOT NULL,
+	[PointsTotal] [int] NULL,
+	[dtmInserted] [datetime] NULL,
+ CONSTRAINT [PK_tblTotalDetail] PRIMARY KEY CLUSTERED 
 (
 	[TotalD] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON, FILLFACTOR = 90) ON [PRIMARY]
-) ON [PRIMARY]	
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90) ON [PRIMARY]
+) ON [PRIMARY]
 
 SET ANSI_PADDING OFF
 

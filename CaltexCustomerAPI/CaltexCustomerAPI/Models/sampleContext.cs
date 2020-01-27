@@ -21,14 +21,12 @@ namespace CaltexCustomerAPI.Models
         public virtual DbSet<ProductDetails> ProductDetails { get; set; }
         public virtual DbSet<Promotion> Promotion { get; set; }
         public virtual DbSet<TotalDetail> TotalDetail { get; set; }
-        //public virtual DbSet<TotalDetails> TblTotalDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning The connection string must ideally come from appSettings.json, however I encountered an error with scaffolding a named connection string, more details at https://github.com/dotnet/efcore/issues/10432.
-/*In the interest of time I am leaving it as such*/
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=MSI;Database=sample;Trusted_Connection=True;");
             }
         }
@@ -37,23 +35,19 @@ namespace CaltexCustomerAPI.Models
         {
             modelBuilder.Entity<Basket>(entity =>
             {
-                entity.HasKey(e => e.CustomerId);
+                entity.HasKey(e => e.BasketId);
 
                 entity.ToTable("tblBasket");
 
-                entity.Property(e => e.CustomerId).ValueGeneratedNever();
-
-                entity.Property(e => e.BasketId)
-                    .HasColumnName("BasketID")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.BasketId).HasColumnName("BasketID");
 
                 entity.Property(e => e.ProductId)
                     .IsRequired()
                     .HasMaxLength(50);
 
                 entity.HasOne(d => d.Customer)
-                    .WithOne(p => p.TblBasket)
-                    .HasForeignKey<Basket>(d => d.CustomerId)
+                    .WithMany(p => p.Basket)
+                    .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblBasket_tblCustomerTransaction");
             });
@@ -160,10 +154,8 @@ namespace CaltexCustomerAPI.Models
             });
 
             modelBuilder.Entity<TotalDetail>(entity =>
-            
             {
-                entity.HasKey(e => e.TotalD)
-                .HasName("PK_tblTotalDetail	");
+                entity.HasKey(e => e.TotalD);
 
                 entity.ToTable("tblTotalDetail");
 
@@ -172,12 +164,11 @@ namespace CaltexCustomerAPI.Models
                     .HasColumnType("datetime");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.TblTotalDetail)
+                    .WithMany(p => p.TotalDetail)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblTotalDetail_tblCustomerTransaction");
             });
-
 
             OnModelCreatingPartial(modelBuilder);
         }

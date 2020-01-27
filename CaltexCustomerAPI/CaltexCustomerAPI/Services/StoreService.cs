@@ -44,7 +44,7 @@ namespace CaltexCustomerAPI.Services
                                      where n.Category == "Any"
                                      select
                                   n.PointsPerDollar).FirstOrDefault();
-                return Math.Round(newYearPromo * quantity * unitPrice);
+                return Math.Round((double)newYearPromo * quantity);
             }
             else 
             {
@@ -57,14 +57,14 @@ namespace CaltexCustomerAPI.Services
                                && p.EndDate >= transactionDate && p.StartDate <= transactionDate
                                select
                             p.PointsPerDollar).FirstOrDefault());
-                return Math.Round(points * quantity * unitPrice); ;
+                return Math.Round((double)points * quantity); ;
             }
    
         }
 
         public double CalculateTotal(int quantity, double unitPrice)
         {
-            return Math.Round(quantity * unitPrice);
+            return (quantity * unitPrice);
         }
 
         public void PopulateBasket(Guid customerid, BasketData basketData)
@@ -135,6 +135,7 @@ namespace CaltexCustomerAPI.Services
             }
         }
 
+        //This could be retrived either from the database - tblTotalDetails if data integrity is the priority or it can be returned from here if the priority is to save DB calls.
         public void SaveTotal(Guid customerid, double totalDiscount, double grandTotal, double totalAmount, double totalPoints)
         {
             TotalDetail totalDetail = new TotalDetail();
