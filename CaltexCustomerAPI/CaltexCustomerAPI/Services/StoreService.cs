@@ -9,7 +9,7 @@ namespace CaltexCustomerAPI.Services
 {
     public class StoreService : IStoreService
     {
-        //private readonly sampleContext _context;
+
 
         static double totalPoints =0;
         static double totalDiscount =0;
@@ -21,12 +21,9 @@ namespace CaltexCustomerAPI.Services
 
         }
 
-        sampleContext _context = new sampleContext();
-        //public StoreService(sampleContext context)
-        //{
+        //This can be replaced by injecting the context as dependancy, however I am skipping it here as I am not using an interface for the DBContext.
 
-        //    _context = context;
-        //}
+        sampleContext _context = new sampleContext();
 
         public double CalculatePoints(string productId, DateTime transactionDate, int quantity, double unitPrice)
         {
@@ -83,7 +80,7 @@ namespace CaltexCustomerAPI.Services
 
         public void EditServoData(Guid customerid, string loyaltycard, DateTime transactiondate, IList<BasketData> BasketData)
         {
-            try { 
+           
             CustomerTransaction customerTransaction = new CustomerTransaction();
             customerTransaction.CustomerId = customerid;
             customerTransaction.LoyaltyCard = loyaltycard;
@@ -101,11 +98,6 @@ namespace CaltexCustomerAPI.Services
             }
 
             SaveTotal(customerid, totalDiscount, totalAmount - totalDiscount, totalAmount, totalPoints);
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
         }
 
         public PurchaseResponse ServoData(PurchaseRequest request)

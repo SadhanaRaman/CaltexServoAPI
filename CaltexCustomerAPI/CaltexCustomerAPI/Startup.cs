@@ -38,8 +38,8 @@ namespace CaltexCustomerAPI
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
-                app.UseExceptionHandler("/api/error");
+               app.UseDeveloperExceptionPage();
+               //app.UseExceptionHandler("/api/error");
             }
             else
             {

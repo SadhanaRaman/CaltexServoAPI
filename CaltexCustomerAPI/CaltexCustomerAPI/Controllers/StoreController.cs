@@ -30,20 +30,5 @@ namespace CaltexCustomerAPI.Controllers
         {
             return _storeService.ServoData(purchaseRequest);
         }
-
-        /*Sample Request*/
-        /*{ 
-        "CustomerId":"8e4e8991-aaab-495b-9f24-52d5d0e519c4",
-         "LoyaltyCard":"CTX0000001",
-         "TransactionDate":"2020-02-06T00:00:00.000Z",
-        "BasketData":
-	        [
-    	    {
-      	    "ProductId":"PRD02",
-      	    "Quantity":3,
-      	    "UnitPrice": 1.3
-		    }
-         ]
-        }*/
     }
 }
