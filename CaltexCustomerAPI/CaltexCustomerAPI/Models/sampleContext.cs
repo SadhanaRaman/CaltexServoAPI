@@ -27,7 +27,8 @@ namespace CaltexCustomerAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+#warning The connection string must ideally come from appSettings.json, however I encountered an error with scaffolding a named connection string, more details at https://github.com/dotnet/efcore/issues/10432.
+/*In the interest of time I am leaving it as such*/
                 optionsBuilder.UseSqlServer("Server=MSI;Database=sample;Trusted_Connection=True;");
             }
         }
@@ -177,22 +178,6 @@ namespace CaltexCustomerAPI.Models
                     .HasConstraintName("FK_tblTotalDetail_tblCustomerTransaction");
             });
 
-            //modelBuilder.Entity<TotalDetail>(entity =>
-            //{
-            //    entity.HasKey(e => e.TotalD);
-
-            //    entity.ToTable("tblTotalDetails");
-
-            //    entity.Property(e => e.DtmInserted)
-            //        .HasColumnName("dtmInserted")
-            //        .HasColumnType("datetime");
-
-            //    entity.HasOne(d => d.Customer)
-            //        .WithMany(p => p.TblTotalDetail)
-            //        .HasForeignKey(d => d.CustomerId)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK_tblTotalDetails_tblCustomerTransaction");
-            //});
 
             OnModelCreatingPartial(modelBuilder);
         }

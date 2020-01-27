@@ -33,13 +33,17 @@ namespace CaltexCustomerAPI.Controllers
 
         /*Sample Request*/
         /*{ 
-           "CustomerId":"8e4e8991-aaee-495b-9f24-52d5d0e509c5",
-           "LoyaltyCard":"CTX0000001",
-           "TransactionDate":"2020-04-03T00:00:00.000Z",
-           "BasketData":
-            [
-              {"ProductId":"PRD01","Quantity":"3","UnitPrice": "1.2"}
-            ]
+        "CustomerId":"8e4e8991-aaab-495b-9f24-52d5d0e519c4",
+         "LoyaltyCard":"CTX0000001",
+         "TransactionDate":"2020-02-06T00:00:00.000Z",
+        "BasketData":
+	        [
+    	    {
+      	    "ProductId":"PRD02",
+      	    "Quantity":3,
+      	    "UnitPrice": 1.3
+		    }
+         ]
         }*/
     }
 }

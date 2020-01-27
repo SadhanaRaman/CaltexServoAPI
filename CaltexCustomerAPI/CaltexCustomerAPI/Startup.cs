@@ -38,7 +38,12 @@ namespace CaltexCustomerAPI
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/api/error");
+            }
+            else
+            {
+                app.UseExceptionHandler("/api/error");
             }
 
             app.UseHttpsRedirection();

@@ -83,6 +83,7 @@ namespace CaltexCustomerAPI.Services
 
         public void EditServoData(Guid customerid, string loyaltycard, DateTime transactiondate, IList<BasketData> BasketData)
         {
+            try { 
             CustomerTransaction customerTransaction = new CustomerTransaction();
             customerTransaction.CustomerId = customerid;
             customerTransaction.LoyaltyCard = loyaltycard;
@@ -100,6 +101,11 @@ namespace CaltexCustomerAPI.Services
             }
 
             SaveTotal(customerid, totalDiscount, totalAmount - totalDiscount, totalAmount, totalPoints);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public PurchaseResponse ServoData(PurchaseRequest request)
