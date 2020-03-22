@@ -30,6 +30,34 @@ namespace CaltexCustomerAPI
             services.AddControllers();
             services.AddMvc();
             services.AddScoped<IStoreService, StoreService>();
+
+            services.AddSwaggerGen(options =>
+            {
+
+                options.SwaggerDoc("CaltexPISpec",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "Caltex API",
+                        Version = "1",
+                        Description = "Sadhana Caltex API",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        {
+                            Email = "Sadhu4590@gmail.com",
+                            Name = "Sadhana Kalyana Raman",
+                            Url = new Uri("http://test.com")
+                        },
+                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                        {
+                            Name = "Sadhana Kalyana Raman",
+                            Url = new Uri("http://test.com")
+                        }
+                    });
+
+                //var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+                //options.IncludeXmlComments(xmlCommentsFullPath);
+            });
+
             //services.AddDbContext<sampleContext>(options => options.UseSqlite("Data Source=MSI"));
         }
 
@@ -43,10 +71,20 @@ namespace CaltexCustomerAPI
             }
             else
             {
-                app.UseExceptionHandler("/api/error");
+                app.UseExceptionHandler("/error");
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+
+                options.SwaggerEndpoint("swagger/CaltexPISpec/swagger.json",
+                   "Caltex API");
+                options.RoutePrefix = "";
+            });
 
             app.UseRouting();
 
@@ -59,6 +97,7 @@ namespace CaltexCustomerAPI
               
                 endpoints.MapControllers();
             });
+
         }
     }
 }

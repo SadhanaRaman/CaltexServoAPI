@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CaltexCustomerAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("error")]
     public class ErrorController : Controller
     {
         private readonly ILogger<ErrorController> logger;
@@ -18,7 +18,7 @@ namespace CaltexCustomerAPI.Controllers
         {
             this.logger = logger;
         }
-       public IActionResult LogError()
+        protected IActionResult LogError()
         {
             //Get the exception
             var excep = HttpContext.Features.Get<IExceptionHandlerPathFeature>();

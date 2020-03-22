@@ -11,7 +11,8 @@ using CaltexCustomerAPI.Services;
 namespace CaltexCustomerAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("store")]
+    //swagger json - https://localhost:44317/swagger/CaltexPISpec/swagger.json
     public class StoreController : ControllerBase
     {
 
